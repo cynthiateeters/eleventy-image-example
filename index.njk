@@ -1,38 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>11ty img example</title>
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        max-width: 600px;
-      }
-      img {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
-  </head>
-  <body>
-    {% Image "images/0001.jpg", "image no 01" %} 
-    {% Image "images/0002.jpg", "image no 02" %} 
-    {% Image "images/0003.jpg", "image no 03" %} 
-    {% Image "images/0004.jpg", "image no 04" %} 
-    {% Image "images/0005.jpg", "image no 05" %} 
-    {% Image "images/0006.jpg", "image no 06" %} 
-    {% Image "images/0007.jpg", "image no 07" %} 
-    {% Image "images/0008.jpg", "image no 08" %} 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11ty img example</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      padding-block: 2rem;
+      width: min(100vw - 3rem, 80rem);
+      margin-inline: auto;
+      display: grid;
+      gap: 1rem;
+      grid-template-rows: 1fr auto 1fr;
+    }
+
+    .container {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+    }
+
+    :where(h1, footer p) {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Photo Gallery (lazy loading images)</h1>
+  <div class="container">
+    {% Image "images/0001.jpg", "image no 01" %}
+    {% Image "images/0002.jpg", "image no 02" %}
+    {% Image "images/0003.jpg", "image no 03" %}
+    {% Image "images/0004.jpg", "image no 04" %}
+    {% Image "images/0005.jpg", "image no 05" %}
+    {% Image "images/0006.jpg", "image no 06" %}
+    {% Image "images/0007.jpg", "image no 07" %}
+    {% Image "images/0008.jpg", "image no 08" %}
     {% Image "images/0009.jpg", "image no 09" %}
+  </div>
+  <footer>
+    <p>2022</p>
+  </footer>
 
-    <script type="module" async>
-      import Lazyload from "https://cdn.skypack.dev/vanilla-lazyload";
-      const lazyload = new Lazyload();
-    </script>
-  </body>
+  <script type="module" async>
+    import Lazyload from "https://cdn.skypack.dev/vanilla-lazyload";
+    const lazyload = new Lazyload();
+  </script>
+</body>
+
 </html>

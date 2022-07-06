@@ -3,6 +3,7 @@ const sharp = require("sharp");
 
 module.exports = (cfg) => {
   cfg.addPassthroughCopy("images");
+    cfg.addPassthroughCopy("style.css");
 
   cfg.addNunjucksAsyncShortcode("Image", async (src, alt) => {
     if (!alt) {
